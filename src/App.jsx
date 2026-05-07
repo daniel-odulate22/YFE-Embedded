@@ -1,8 +1,10 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Lenis from '@studio-freight/lenis';
+import { logger } from './utils/logger.js';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import DebugConsole from './components/DebugConsole';
 import Home from './pages/Home';
 import Workshops from './pages/Workshops';
 import Team from './pages/Team';
@@ -11,6 +13,7 @@ import Contact from './pages/Contact';
 function ScrollToTop() {
   const { pathname } = useLocation();
   useEffect(() => {
+    logger.logNavigation(window.location.pathname, pathname);
     window.scrollTo(0, 0);
   }, [pathname]);
   return null;
@@ -18,6 +21,7 @@ function ScrollToTop() {
 
 function App() {
   useEffect(() => {
+    logger.debug('App component mounted');
     const lenis = new Lenis({
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -38,6 +42,7 @@ function App() {
     requestAnimationFrame(raf);
 
     return () => {
+      logger.debug('App component unmounting');
       lenis.destroy();
     };
   }, []);
@@ -57,6 +62,7 @@ function App() {
         </main>
         <Footer />
       </div>
+      <DebugConsole />
     </Router>
   );
 }
