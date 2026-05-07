@@ -60,8 +60,8 @@ class Logger {
     const color = COLORS[level];
     const style = `color: ${color}; font-weight: bold; font-size: 12px;`;
     const message_string = data
-      ? `%c[${level}] ${timestamp} - ${message}:`, data
-      : `%c[${level}] ${timestamp} - ${message}`;
+  ? `%c[${level}] ${timestamp} - ${message}:`
+  : `%c[${level}] ${timestamp} - ${message}`;
 
     if (data) {
       console.log(message_string, style, data);
