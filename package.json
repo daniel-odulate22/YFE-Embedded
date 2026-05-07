@@ -4,10 +4,10 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "lint": "eslint .",
-    "preview": "vite preview"
+    "dev": "vite --logLevel info",
+    "build": "vite build --logLevel info",
+    "lint": "eslint . --verbose",
+    "preview": "vite preview --logLevel info"
   },
   "dependencies": {
     "@react-three/drei": "^10.7.7",
